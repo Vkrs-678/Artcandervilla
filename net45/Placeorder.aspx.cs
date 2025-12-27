@@ -59,8 +59,7 @@ namespace RazorpaySampleApp
             payment();
 
         }
-
-        private void payment()
+        private void payment() 
         {
             orderId=Guid.NewGuid().ToString();
             Session["orderid"]=orderId;
