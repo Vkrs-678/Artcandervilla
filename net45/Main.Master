@@ -1,0 +1,512 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.Master.cs" Inherits="RazorpaySampleApp.Site1" %>
+
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Art-Candervilla</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="shop the latest trends in Range of Products at artcandervilla store. 
+        Discover high-quality of products with fast shipping, secure checkout, and unbeatable prices.
+        Find the perfect number of products for any style or occasion today!" />
+    <link rel="icon" type="image/x-icon" href="Images/Brand Logo/brandlogo.png" />
+    <!----Csss--->
+    <link href="Css/Style.css" rel="stylesheet" />
+    <!---- Responsive--->
+    <link href="Css/Responsive/ResponsiveStyle.css" rel="stylesheet" />
+    <!----Bootstrap--->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!----Themylyf--->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-----sweet alert---->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-sweetalert@1.0.1/dist/sweetalert.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <!----Javascript normal--->
+    <script src="Js/Normal js/jsn.js"></script>
+
+           <!--searapi--->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"/>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>   
+  
+<script language="javascript" type="text/javascript">
+    $(function () {
+        $('#<%=TxtSearch.ClientID%>').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: 'Default.aspx/Getname',
+                    data: "{'pre' :'" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //response($.map(data.d, function (item) {
+
+                        //    return {
+                        //        value: item.value,
+                        //        image1: item.image1,
+                        //        json: item
+
+                        //    }
+                        //}))
+
+                        response(data.d);
+
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            },
+            focus: function (event, ui) {
+                // this is for when focus of autocomplete item 
+                $('#<%=TxtSearch.ClientID%>').val(ui.item.value);
+                return false;
+            },
+            select: function (event, ui) {
+                // this is for when select autocomplete item
+                $('#<%=TxtSearch.ClientID%>').val(ui.item.value);
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            // here return item for autocomplete text box, Here is the place
+            // where we can modify data as we want to show as autocomplete item
+
+            return $("<style>.ui-autocomplete{border:none;z-index:99999999;margin-right:10px} .ui-autocomplete li a:hover{border:none;background-color:#ededed;}</style><li>")
+                .append("<a style='background-image:url(" + item.image1 + ");" +
+                "background-repeat:no-repeat;background-position:left center;color:black;'> <i class='fa-solid fa-magnifying-glass fa-xl' style='color:gray;'>&nbsp;</i>" + item.value + "</a></li>").appendTo(ul);
+        };
+    });
+
+
+    $(function () {
+        $('#<%=Txtsearch2.ClientID%>').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: 'Default.aspx/Getname',
+                    data: "{'pre' :'" + request.term + "'}",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        //response($.map(data.d, function (item) {
+
+                        //    return {
+                        //        value: item.value,
+                        //        image1: item.image1,
+                        //        json: item
+
+                        //    }
+                        //}))
+
+                        response(data.d);
+
+
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            },
+            focus: function (event, ui) {
+                // this is for when focus of autocomplete item 
+                $('#<%=Txtsearch2.ClientID%>').val(ui.item.value);
+                return false;
+            },
+            select: function (event, ui) {
+                // this is for when select autocomplete item
+                $('#<%=Txtsearch2.ClientID%>').val(ui.item.value);
+                return false;
+            }
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            // here return item for autocomplete text box, Here is the place
+            // where we can modify data as we want to show as autocomplete item
+
+            return $("<style>.ui-autocomplete{border:none;z-index:99999999;margin-right:10px} .ui-autocomplete li a:hover{border:none;background-color:#ededed;}</style><li>")
+                .append("<a style='background-image:url(" + item.image1 + ");" +
+                    "background-repeat:no-repeat;background-position:left center;color:black;'> <i class='fa-solid fa-magnifying-glass fa-xl' style='color:gray;'>&nbsp;</i>" + item.value + "</a></li>").appendTo(ul);
+        };
+    });
+
+
+    function button_click(objTextBox, objBtnID) {
+        if (window.event.keyCode == 13) {
+            document.getElementById(objBtnID).focus();
+            document.getElementById(objBtnID).click();
+        }
+    }
+</script>
+ <style>
+     #loader{
+         height: 100vh; 
+         width: 100%;
+         display:flex;
+         justify-content:center;
+         align-items:center;
+       align-content:center;
+       text-align:center
+        
+     }
+
+     #loaderimg{
+         height:100vh;
+         width:60%;
+       
+     }
+
+     @media screen and (min-device-width: 344px) and (max-device-width: 882px) {
+         #loaderimg {
+             height: 100vh;
+             width: 100%;
+         }
+     }
+   
+    
+ </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body  onload="Myfuncyion()" >
+    
+   
+
+    <div id="loader" style="">
+        <img class="img-fluid" id="loaderimg" src="Images/Preloader/Loader.gif" />
+    </div>
+    <form id="form1" style="display: none" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+       <%-- <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1" EnablePageMethods="true" runat="server"></ajaxToolkit:ToolkitScriptManager>--%>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Default.aspx">
+                    <div style="background-color: white">
+                        <h4 style="padding: 10px; color: deeppink; font-weight: bolder; font-family: cursive"><span style="color: forestgreen">Art</span>-Candervilla</h4>
+                    </div>
+                </a>
+                <div class="d-flex navbar-brand d-none d-sm-none d-md-inline-flex " style="background-color: #ffffff; height: fit-content; padding: 6px; width:48%; border-radius: 10px; text-align: center; box-shadow: 8px 8px 5px #b6b3b3">
+                    <asp:TextBox ID="TxtSearch"  Width="100%" Style="border: 0px; border-style: none; border-color: #ffffff; outline: none; border-radius: 25px; padding: 5px; color: dimgray; font: bolder; font-weight: 700; font-style: italic" placeholder="Make Your Wish....." runat="server"></asp:TextBox>
+
+                    <asp:LinkButton ID="LinkSearch" OnClick="LinkSearch_Click"  Style="margin-top: 10px;" runat="server"><i class="fa-solid fa-magnifying-glass fa-xl" style="color:gray;"></i></asp:LinkButton>
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <%-- <span class="navbar-toggler-icon"></span>--%>
+                    <span class="fa-solid fa-bars" id="collapse" onclick="barchange();"></span>
+                    <%-- <span class="fa-solid fa-xmark"></span>--%>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <ul class="navbar-nav ms-auto d-flex text-center">
+                       <%-- <li class="nav-item ms-auto mt-1">
+                            <span data-bs-toggle="modal" style="cursor: pointer" data-bs-target="#modaCentered" class="fa-solid fa-magnifying-glass nav-link"></span>
+                        </li>--%>
+                        <li>
+                            <div class="d-flex navbar-brand d-md-none" style="background-color: #ffffff; height: fit-content; padding: 5px; width: fit-content; border-radius: 10px; text-align: center; width: 100%; box-shadow: 8px 8px 5px #b6b3b3">
+                                <asp:TextBox ID="Txtsearch2"  Width="100%" Style="border: 0px; border-style: none; border-color: #ffffff; outline: none; border-radius: 25px; padding: 10px; color: dimgray; font: bolder; font-weight: 700; font-style: italic" placeholder="Make Your Wish....." runat="server"></asp:TextBox>
+
+                                <asp:LinkButton ID="Linsearch2" OnClick="Linsearch2_Click" Style="margin-top: 10px; margin-left: 5px" runat="server"><i class="fa-solid fa-magnifying-glass fa-xl" style="color:gray;"></i></asp:LinkButton>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link active" aria-current="page" href="Default.aspx">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link" data-bs-toggle="modal" data-bs-target="#modalprivarypolicy" href="#">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link" data-bs-toggle="modal" data-bs-target="#modalRefundpolicy" href="#">Refund</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class=" nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Products</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <asp:LinkButton ID="LnkProfile" class=" nav-link" OnClick="LnkProfile_Click" runat="server">My Orders</asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="LnkAdmin" OnClick="LnkAdmin_Click" class=" nav-link" runat="server">Admin!</asp:LinkButton>
+                        </li>
+                        <li class="nav-item">
+                            <asp:LinkButton ID="LnkSeller" OnClick="LnkSeller_Click" class=" nav-link" runat="server">Seller!</asp:LinkButton>
+                        </li>
+                        <li class="nav-item mt-1">
+
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:LinkButton ID="LinkButton1" OnClick="LinkButton1_Click" class="fa-solid fa-bag-shopping fa-xl  nav-link mt-2" runat="server">
+                                        <asp:Label ID="Label1" Style="font-family: Calibri;" runat="server" Text="5"></asp:Label>
+                                    </asp:LinkButton>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
+
+
+                            <%-- <i class="fa-solid fa-bag-shopping fa-xl  nav-link my-2" style="color: #74C0FC; cursor: pointer;">
+                                
+                            </i>--%>
+                        </li>
+
+                        <li class="nav-item me-2 mt-2 mt-md-0">
+                            <asp:LinkButton ID="LnkLogin" OnClick="LnkLogin_Click" Font-Size="Smaller" class="nav-link btn btn-dark" Style="color: white" runat="server">Login</asp:LinkButton>
+                        </li>
+                        <li class="nav-item me-2">
+                            <asp:LinkButton ID="LnkLogout" OnClick="LnkLogout_Click" Font-Size="Smaller" class="nav-link btn btn-dark" Style="color: white" runat="server">Log Out</asp:LinkButton>
+                        </li>
+                      
+
+                    </ul>
+
+
+
+
+                </div>
+               
+            </div>
+           
+        </nav>
+        
+        <div>
+            <!-- Modal-RefundPolicy -->
+            <div class="modal fade" id="modalRefundpolicy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 class="modal-title text-bold" style="text-align: center; font-size: larger; font: bolder; text-decoration: none; color: black; cursor: pointer; font-style: italic; font-weight: 600;">Refund Policy</h6>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Our Return and Replacement Policy was last updated 01 January 2025
+
+                              Thank you for shopping at art-candervilla.
+
+                              If for any reason, you are not completely satisfied with a purchase, we invite you to review our policy on refunds and returns.
+
+                              The following terms are applicable for any products that you’ve purchased from us.</p>
+                            <h6>Your Order Cancellation Rights</h6>
+                            <p>
+                                You are entitled to cancel your order before shipment is Shipped without giving any reason for doing so.
+
+                              In order to exercise your right of cancellation, You can go to My order Section and Cancel The Order Before Shipping Start. You can inform us of your decision by:
+
+                                 By sending us an email: artcandervilla@gmail.com
+
+                            We will reimburse you no later than 14 days from the day on which we receive the returned Goods. We will use the same means of payment as you used for the Order, and you will not incur any fees for such reimbursement.
+                            </p>
+                            <h6>
+                                Conditions for Replacement/Return
+                            </h6>
+                            <p>
+                                In order for the Goods to be eligible for a refund/replacement, please make sure that:<br />
+
+                                 Please, Read Details regarding Return/Replacement/Pay on Delivery Before any Purchase.<br />
+                                 We will not be able to help you with this because it will costly process.<br />
+                                 The goods were purchased have Return/Replacement Policy, With Clearly Mentioned the day Within Wich You have to apply For Return after No Return Will Initiate.<br />
+                                 The goods are in the original packaging<br />
+                                 <b>The following goods cannot be returned:</b><br />
+                                 The supply of goods is made to your specifications or clearly personalized.<br />
+                                 The supply of goods which according to their nature are not suitable to be returned, deteriorate rapidly or where the date of expiry is over.<br />
+                                 The supply of goods that are not suitable for return due to health protection or hygiene reasons and were unsealed after delivery.<br />
+                                 The supply of goods which are, after delivery, according to their nature, inseparably mixed with other items.<br />
+
+                                 We reserve the right to refuse returns of any merchandise that does not meet the above return conditions at our sole discretion.
+                            </p>
+                            <p>
+                                We cannot be held responsible for goods damaged or lost in return shipment. Therefore, we recommend an insured and trackable mail service. We are unable to issue a refund without actual receipt of the goods or proof of received return delivery.
+                            </p>
+                        </div>
+                        <div class="modal-footer ms-0">
+                            &copy Art-Candervilla
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal-RefundPolicy -->
+            <!-- Modal-Privarypolic -->
+            <div class="modal fade" id="modalprivarypolicy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <center>
+                                <h6 class="modal-title text-bold" style="text-align: center; font-size: larger; font: bolder; text-decoration: none; color: black; cursor: pointer; font-style: italic; font-weight: 600;">Privacy Policy</h6>
+                            </center>
+
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Last updated: 01 January 2025</p>
+                            <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
+                            <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
+                            <h5>Collecting and Using Your Personal Data</h5>
+                            <h6>Types of Data Collected</h6>
+                            <h6>Personal Data</h6>
+                            <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
+                            <p>&#9679;&nbsp;Email address</p>
+                            <p>&#9679;&nbsp;First name and last name</p>
+                            <p>&#9679;&nbsp;Phone number</p>
+                            <p>&#9679;&nbsp;Address, State, Province, ZIP/Postal code, City</p>
+                            <p>&#9679;&nbsp;Usage Data</p>
+                            <h6>Usage Data</h6>
+                            <p>Usage Data is collected automatically when using the Service.</p>
+                            <p>
+                                Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, 
+                                the time spent on those pages, unique device identifiers and other diagnostic data.
+                            </p>
+                            <p>When You access the Service by or through a mobile device, We may collect certain information automatically, including, but not limited to, the type of mobile device You use, Your mobile device unique ID, the IP address of Your mobile device, Your mobile operating system, the type of mobile Internet browser You use, unique device identifiers and other diagnostic data.</p>
+                            <p>We may also collect information that Your browser sends whenever You visit our Service or when You access the Service by or through a mobile device.</p>
+                            <h6>Retention of Your Personal Data</h6>
+                            <p>
+                                The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+
+                                  The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods.
+                            </p>
+                            <h6>Transfer of Your Personal Data</h6>
+                            <p>
+                                Your information, including Personal Data, is processed at the Company's operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of Your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from Your jurisdiction.
+
+                               Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.
+
+                               The Company will take all steps reasonably necessary to ensure that Your data is treated securely and in accordance with this Privacy Policy and no transfer of Your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information.
+                            </p>
+                            <h4>Disclosure of Your Personal Data
+                            </h4>
+                            <h6>Business Transactions
+                            </h6>
+                            <p>
+                                If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred. We will provide notice before Your Personal Data is transferred and becomes subject to a different Privacy Policy.
+                            </p>
+                            <h6>Law enforcement
+                            </h6>
+                            <p>
+                                Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency).
+                            </p>
+                            <h6>Security of Your Personal Data
+                            </h6>
+                            <p>
+                                The security of Your Personal Data is important to Us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.
+                            </p>
+                            <h6>Children's Privacy
+                            </h6>
+                            <p>
+                                Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We have collected Personal Data from anyone under the age of 13 without verification of parental consent, We take steps to remove that information from Our servers.
+
+                                  If We need to rely on consent as a legal basis for processing Your information and Your country requires consent from a parent, We may require Your parent's consent before We collect and use that information.
+                            </p>
+                            <h6>Changes to this Privacy Policy
+                            </h6>
+                            <p>
+                                We may update Our Privacy Policy from time to time. We will notify You of any changes by posting the new Privacy Policy on this page.
+
+                              We will let You know via email and/or a prominent notice on Our Service, prior to the change becoming effective and update the 'Last updated' date at the top of this Privacy Policy.
+
+                                 You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
+                            </p>
+                            <h6>Contact Us</h6>
+                            <p>
+                                If you have any questions about this Privacy Policy, You can contact us:
+                            </p>
+                            <p>
+                                By email: artcandervilla@gmail.com
+                            </p>                           
+                            <p>
+                                3A,Dwarka,South-West Delhi
+                            </p>
+                            <p>
+                                New Delhi-110043
+                            </p>
+                        </div>
+                        <div class="modal-footer ms-0">
+                            &copy Art-Candervilla
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal-Privarypolic -->
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <a href="Productpage.aspx" class="modal-title text-bold" style="text-align: center; font-size: larger; font: bolder; text-decoration: none; color: gray; cursor: pointer; font-style: italic; font-weight: 600;" id="exampleModalLabel">All Products</a>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+
+                                <asp:Repeater ID="Rptrmain" OnItemDataBound="Rptrmain_ItemDataBound" runat="server">
+                                    <ItemTemplate>
+                                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                                            <h5 style="font: bold; font-weight: 600; font-style: italic"><%#Eval("Catname") %></h5>
+                                            <asp:HiddenField ID="Hdnmainfield" Value='<%#Eval("id") %>' runat="server" />
+                                            <asp:Repeater ID="Rptrsubcat" runat="server">
+                                                <ItemTemplate>
+                                                    <a href="Productpage.aspx?subcatid=<%#Eval("id").ToString() %>" style="font: bold; font-weight: 600; font-style: italic; color: gray; cursor: pointer; text-decoration: none"><%#Eval("SubcatName").ToString() %></a><br />
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer ms-0">
+                            &copy Art-Candervilla
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+          
+            
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+              
+            </asp:ContentPlaceHolder>
+        </div>
+        <footer>
+            <h6>&copy;Art-Candervilla<span><asp:LinkButton ID="LnkSellerLogin" OnClick="LinkButton2_Click" runat="server">|| Sell With Us?</asp:LinkButton></span><span>
+                <asp:LinkButton ID="LnkAdmins" OnClick="LnkAdmins_Click" Visible="false" ForeColor="Chocolate" runat="server">|| Admin</asp:LinkButton></span></h6>
+        </footer>
+    </form>
+    <!-----bootstrap js----->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!---sweet alert---->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-sweetalert@1.0.1/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+        function fier() {
+            swal("Good job!", "You clicked the button!", "success");
+
+        }
+
+        function barchange() {
+            var a = document.getElementById('collapse');
+            if (a.className == "fa-solid fa-bars") {
+                a.className = "fa-solid fa-xmark";
+            }
+            else {
+                a.className = "fa-solid fa-bars";
+            }
+
+        }
+
+    </script>
+
+    <script>
+        function Myfuncyion() {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('form1').style.display = 'block';
+
+        }
+
+      
+    </script>
+    <!----jquery javascript--->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
+    <!---sweet alert---->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-sweetalert@1.0.1/dist/sweetalert.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:ital,wght@0,100;0,400;0,500;1,200;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@300&family=Rubik+Bubbles&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Recursive:wght@300..1000&display=swap');
+
+*{
+    margin:0px;
+    padding:0px;
+}
+.navbar .collapse .navbar-nav .navbar-collapse {
+    text-align: center;
+}
+.navbar .navbar-toggler:focus{
+    box-shadow:none;
+}
+
+
+
+
+.navbar .collapse .navbar-nav .nav-link {
+    color: #6d6868;
+    font-weight: bold;
+}
+
+.navbar .collapse .navbar-nav .nav-link:hover{
+    color:tomato;
+   
+    
+}
+
+
+
+   
+
+
+
+
+/*Home*/
+
+.bannersAx, .bannersB, .bannersC, .bannersD {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 90% center;
+    min-height: 490px;
+    position: relative;
+}
+.bannersA {
+   
+    background-image: url('../images/banner/banner1.jpg');
+}
+.bannersB {
+    background-image: url('../images/banner/banner2.jpg');
+}
+
+.bannersC {
+    background-image: url('../images/banner/banner3.jpg');
+}
+
+.bannersD {
+    background-image: url('../images/banner/banner4.jpg');
+}
+.bannersEx {
+    background-image: url('../images/banner/banner5.jpg');
+}
+
+.bannersA .home-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-110%,-50%);
+}
+
+.bannersB .home-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-110%,-50%);
+}
+
+.bannersC .home-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-110%,-50%);
+}
+
+.bannersD .home-banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-110%,-50%);
+}
+
+
+#carsol[data-bs-target] {
+    color: tomato;
+    width: 2.5rem;
+    height: 0313rem;
+}
+
+.text-uppercase:hover{
+    background-color:transparent;
+}

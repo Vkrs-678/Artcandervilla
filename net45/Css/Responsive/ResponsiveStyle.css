@@ -1,0 +1,52 @@
+﻿@media (max-width:1030px){
+    .bannerB .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        transform: translate(-110%,-50%);
+    }
+}
+
+@media (max-width:991px) {
+}
+
+
+@media (max-width:767px) {
+    .bannerB .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        text-align: center;
+        transform: translate(-110%,-50%);
+    }
+
+    .bannerA .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        text-align: center;
+        transform: translate(-110%,-50%);
+    }
+
+    .bannerD .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        text-align: center;
+        transform: translate(-110%,-50%);
+    }
+
+    .bannerC .home-banner-text {
+        position: absolute;
+        top: 50%;
+        left: 70%;
+        text-align: center;
+        transform: translate(-110%,-50%);
+    }
+
+   
+   
+}
+
+@media (max-width:330px) {
+}
